@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  color: #2d2d2d;
+  background: #f8f9fb;
+}
+
+/* Soft gradient background for main areas */
+.bg-gradient-soft {
+  background: linear-gradient(135deg, #fce4dc 0%, #e0d4f5 35%, #d0e4fa 65%, #fce4dc 100%);
+}
+
+/* Animated gradient blob */
+.gradient-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Chat input glow effect */
+.chat-input-glow {
+  position: relative;
+}
+.chat-input-glow::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #f4b8a5 0%, #c9b8f4 50%, #a5c4f4 100%);
+  opacity: 0.5;
+  z-index: -1;
+  transition: opacity 0.3s;
+}
+.chat-input-glow:focus-within::before {
+  opacity: 0.8;
+}
+
+/* Agent card pin colors */
+.pin-red { background: #ef4444; }
+.pin-blue { background: #3b82f6; }
+.pin-green { background: #22c55e; }
+.pin-yellow { background: #eab308; }
+.pin-purple { background: #a855f7; }
+.pin-pink { background: #ec4899; }
+.pin-orange { background: #f97316; }
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
