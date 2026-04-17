@@ -3,11 +3,11 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "AI Business Constructor",
-    template: "%s | AIBC",
+    default: "Agently",
+    template: "%s | Agently",
   },
   description:
-    "Виртуальная команда AI-агентов для вашего бизнеса. Сайт, дизайн, CRM, маркетинг — всё через один интерфейс.",
+    "Agently — виртуальная команда AI-агентов для вашего бизнеса. Сайт, дизайн, CRM, маркетинг — всё через один интерфейс.",
   icons: {
     icon: "/favicon.svg",
   },

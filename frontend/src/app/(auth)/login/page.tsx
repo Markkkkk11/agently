@@ -71,7 +71,7 @@ export default function LoginPage() {
     <main className="flex min-h-screen items-center justify-center bg-gradient-soft">
       <div className="w-full max-w-md rounded-card border border-white/60 bg-white/80 backdrop-blur-sm p-8 shadow-card">
         <h1 className="mb-2 text-2xl font-bold text-foreground">
-          AI Business Constructor
+          Agently
         </h1>
         <p className="mb-6 text-sm text-foreground/60">
           Войдите или создайте аккаунт

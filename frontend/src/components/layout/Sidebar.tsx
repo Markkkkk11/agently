@@ -54,7 +54,7 @@ export default function Sidebar() {
         <span className="flex h-9 w-9 items-center justify-center rounded-btn bg-accent text-lg font-bold text-white shadow-sm">
           A
         </span>
-        <span className="text-lg font-bold text-foreground tracking-tight">AIBC</span>
+        <span className="text-lg font-bold text-foreground tracking-tight">Agently</span>
       </div>
 
       {/* Navigation */}
