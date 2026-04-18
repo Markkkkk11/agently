@@ -9,6 +9,7 @@ interface RevealProps {
   direction?: Direction;
   delay?: number;
   className?: string;
+  visibleClassName?: string;
 }
 
 const transforms: Record<Direction, string> = {
@@ -23,13 +24,17 @@ export default function Reveal({
   direction = "up",
   delay = 0,
   className = "",
+  visibleClassName = "",
 }: RevealProps) {
   const { ref, visible } = useReveal<HTMLDivElement>({ delay });
+  const revealClassName = [className, visible ? visibleClassName : ""]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <div
       ref={ref}
-      className={className}
+      className={revealClassName}
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "none" : transforms[direction],

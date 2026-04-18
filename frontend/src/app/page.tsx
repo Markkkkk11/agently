@@ -139,7 +139,7 @@ export default function LandingPage() {
   useHeroScrollGradient();
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#f7f7f4] text-[#050505]">
+    <div className="min-h-screen [overflow-x:clip] bg-[#f7f7f4] text-[#050505]">
       <header className="sticky top-0 z-50 h-16 border-b border-black/[0.04] bg-[#f7f7f4]/82 backdrop-blur-xl">
         <div className="mx-auto flex h-full max-w-[1920px] items-center justify-between px-5 lg:px-10">
           <Link href="/" className="flex items-center gap-2" aria-label="Agently home">
@@ -249,39 +249,42 @@ export default function LandingPage() {
         <LimitlessBridge />
         <ProductStoryStack />
 
-        <section id="agents" className="relative bg-white px-5 py-24 sm:px-6 lg:py-32">
-          <div className="section-halo section-halo-right" aria-hidden="true" />
-          <div className="mx-auto max-w-6xl">
+        <section id="agents" className="agents-section relative bg-white px-5 py-24 sm:px-6 lg:py-32">
+          <div className="mx-auto max-w-7xl">
             <Reveal>
-              <div className="mb-12 flex flex-col justify-between gap-6 border-b border-black/10 pb-10 lg:flex-row lg:items-end">
-                <div>
-                  <p className="mb-4 text-[14px] font-bold uppercase tracking-[0.12em] text-[#8a7cf6]">AI-команда</p>
-                  <h2 className="max-w-3xl text-[44px] font-normal leading-[1.03] tracking-[-0.035em] sm:text-[64px]">
-                    Каждый агент берет свою часть запуска
-                  </h2>
+              <div className="agents-board">
+                <article className="agents-intro-panel">
+                  <p className="agents-kicker">AI-команда</p>
+                  <h2>Каждый агент берет свою часть запуска</h2>
+                  <p>
+                    Вы общаетесь в одном интерфейсе, а внутри задачи расходятся между специалистами.
+                  </p>
+                  <div className="agents-orbit" aria-hidden="true">
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                </article>
+
+                <div className="agents-grid-panel">
+                  <RevealGroup stagger={70} className="agents-grid">
+                    {AGENTS.map((agent) => (
+                      <article key={agent.name} className="agent-tile">
+                        <div className="agent-code">{agent.code}</div>
+                        <div>
+                          <h3>{agent.name}</h3>
+                          <p>{agent.desc}</p>
+                        </div>
+                      </article>
+                    ))}
+                  </RevealGroup>
                 </div>
-                <p className="max-w-md text-[18px] leading-[1.45] text-black/58">
-                  Вы общаетесь в одном интерфейсе, а внутри задачи расходятся между специалистами.
-                </p>
               </div>
             </Reveal>
-
-            <RevealGroup stagger={70} className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {AGENTS.map((agent, index) => (
-                <article
-                  key={agent.name}
-                  className={`rounded-[18px] border border-black/[0.06] p-6 shadow-[0_18px_60px_rgba(20,25,35,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_65px_rgba(0,0,0,0.07)] ${
-                    index === 0 ? "bg-[#fff5a8] lg:col-span-2" : "bg-[#f8f8f5]"
-                  }`}
-                >
-                  <div className="mb-10 flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white text-[13px] font-extrabold">
-                    {agent.code}
-                  </div>
-                  <h3 className="text-[21px] font-semibold tracking-[-0.02em]">{agent.name}</h3>
-                  <p className="mt-2 text-[15px] leading-[1.45] text-black/58">{agent.desc}</p>
-                </article>
-              ))}
-            </RevealGroup>
           </div>
         </section>
 
@@ -362,18 +365,19 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="faq" className="bg-[#f7f7f4] px-5 py-24 sm:px-6 lg:py-32">
-          <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.75fr_1.25fr]">
+        <section id="faq" className="faq-section bg-white px-5 py-24 sm:px-6 lg:py-32">
+          <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.35fr]">
             <Reveal>
-              <div className="lg:sticky lg:top-24">
-                <p className="mb-4 text-[14px] font-bold uppercase tracking-[0.12em] text-[#8a7cf6]">FAQ</p>
-                <h2 className="text-[44px] font-normal leading-[1.03] tracking-[-0.035em] sm:text-[58px]">
-                  Частые вопросы
+              <div className="faq-heading lg:sticky lg:top-24">
+                <h2>
+                  Частые
+                  <br />
+                  вопросы
                 </h2>
               </div>
             </Reveal>
 
-            <div className="space-y-3">
+            <div className="faq-list">
               {FAQ_ITEMS.map((item) => (
                 <FaqItem key={item.q} question={item.q} answer={item.a} />
               ))}
@@ -457,9 +461,8 @@ export default function LandingPage() {
 
 function LimitlessBridge() {
   return (
-    <section className="limitless-bridge relative overflow-hidden px-5 py-32 text-center sm:px-6 lg:py-44">
-      <div className="bridge-orange" aria-hidden="true" />
-      <Reveal direction="up">
+    <section className="limitless-bridge relative overflow-hidden px-5 pb-0 pt-20 text-center sm:px-6 lg:pt-24">
+      <Reveal direction="up" visibleClassName="gradient-title-visible">
         <h2 className="gradient-title mx-auto max-w-6xl text-[52px] font-normal leading-[0.95] tracking-[-0.065em] sm:text-[92px] lg:text-[126px]">
           Возможности без границ
         </h2>
@@ -507,56 +510,111 @@ function ProductStoryStack() {
 function useStoryStackMotion() {
   useEffect(() => {
     const section = document.querySelector<HTMLElement>("[data-story-section]");
+    const stage = section?.querySelector<HTMLElement>(".story-sticky-stage");
     const cards = Array.from(document.querySelectorAll<HTMLElement>("[data-story-card]"));
-    let frame = 0;
+    let step = 1;
+    let stickyTop = 64;
+    let progress = 0;
+    let targetProgress = 0;
+    let motionFrame = 0;
+    let scrollDistance = 1;
+    const lastCardIndex = Math.max(cards.length - 1, 0);
 
     const clamp = (value: number) => Math.min(Math.max(value, 0), 1);
+    const clampProgress = (value: number) => Math.min(Math.max(value, 0), scrollDistance);
+    const smootherStep = (value: number) => value * value * value * (value * (value * 6 - 15) + 10);
 
-    const update = () => {
-      if (!section || cards.length === 0) {
+    const syncLayout = () => {
+      if (!section || !stage || cards.length === 0) {
+        return;
+      }
+
+      stickyTop = Number.parseFloat(window.getComputedStyle(stage).top) || 64;
+      step = Math.min(Math.max(window.innerHeight * 0.82, 620), 900);
+      scrollDistance = Math.max(lastCardIndex * step, 1);
+
+      const stickyHeight = Math.max(window.innerHeight - stickyTop, 1);
+      const releaseHold = Math.min(Math.max(window.innerHeight * 0.18, 120), 220);
+      section.style.setProperty("--story-scroll-height", `${stickyHeight + scrollDistance + releaseHold}px`);
+    };
+
+    const render = (value = progress) => {
+      if (cards.length === 0) {
+        return;
+      }
+
+      const stackProgress = clampProgress(value);
+      const travel = step * 0.92;
+
+      cards.forEach((card, index) => {
+        const enterRaw = index === 0 ? 1 : clamp((stackProgress - (index - 1) * step) / travel);
+        const coverRaw = index === lastCardIndex ? 0 : clamp((stackProgress - index * step) / travel);
+        const enter = smootherStep(enterRaw);
+        const cover = smootherStep(coverRaw);
+        const slide = index === 0 ? 0 : (1 - enter) * 100;
+        const shade = cover * 0.07;
+
+        card.style.setProperty("--card-y", `${slide}%`);
+        card.style.setProperty("--card-lift", "0px");
+        card.style.setProperty("--card-scale", "1");
+        card.style.setProperty("--card-shade", shade.toFixed(3));
+        card.style.setProperty("--card-opacity", index === 0 || enterRaw > 0.001 ? "1" : "0");
+      });
+    };
+
+    const tickMotion = () => {
+      const distance = targetProgress - progress;
+
+      if (Math.abs(distance) < 0.35) {
+        progress = targetProgress;
+        render();
+        motionFrame = 0;
+        return;
+      }
+
+      progress += distance * 0.16;
+      render();
+      motionFrame = window.requestAnimationFrame(tickMotion);
+    };
+
+    const startMotion = () => {
+      if (!motionFrame) {
+        motionFrame = window.requestAnimationFrame(tickMotion);
+      }
+    };
+
+    const onScroll = () => {
+      if (!section) {
         return;
       }
 
       const rect = section.getBoundingClientRect();
-      const scrollable = Math.max(rect.height - window.innerHeight, 1);
-      const sectionProgress = clamp(-rect.top / scrollable);
-      const stackPosition = sectionProgress * (cards.length - 1);
-
-      cards.forEach((card, index) => {
-        const enter = index === 0 ? 1 : clamp(stackPosition - (index - 1));
-        const leave = index === cards.length - 1 ? 0 : clamp(stackPosition - index);
-        const slide = index === 0 ? 0 : (1 - enter) * 112;
-        const lift = leave * -28;
-        const scale = 1 - leave * 0.04;
-        const shade = leave * 0.09;
-
-        card.style.setProperty("--card-y", `${slide}%`);
-        card.style.setProperty("--card-lift", `${lift}px`);
-        card.style.setProperty("--card-scale", scale.toFixed(3));
-        card.style.setProperty("--card-shade", shade.toFixed(3));
-        card.style.setProperty("--card-opacity", index === 0 || enter > 0 ? "1" : "0");
-      });
-
-      frame = 0;
+      targetProgress = clampProgress(stickyTop - rect.top);
+      startMotion();
     };
 
-    const onScroll = () => {
-      if (frame) {
-        return;
-      }
-      frame = window.requestAnimationFrame(update);
+    const onResize = () => {
+      const oldMaxProgress = Math.max(scrollDistance, 1);
+      const progressRatio = clamp(progress / oldMaxProgress);
+      const targetRatio = clamp(targetProgress / oldMaxProgress);
+      syncLayout();
+      progress = progressRatio * scrollDistance;
+      targetProgress = targetRatio * scrollDistance;
+      render();
     };
 
-    update();
+    syncLayout();
+    onScroll();
+    render();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    window.addEventListener("resize", onResize);
 
     return () => {
-      if (frame) {
-        window.cancelAnimationFrame(frame);
+      if (motionFrame) {
+        window.cancelAnimationFrame(motionFrame);
       }
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("resize", onResize);
     };
   }, []);
 }
@@ -788,19 +846,19 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <article className="rounded-[18px] border border-black/[0.06] bg-white/62 transition hover:bg-white">
+    <article className="faq-item">
       <button
         onClick={() => setOpen(!open)}
-        className="flex w-full items-center justify-between gap-6 px-6 py-5 text-left"
+        className="faq-trigger"
       >
-        <span className="text-[19px] font-semibold tracking-[-0.01em]">{question}</span>
-        <span className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border border-black/10 transition ${open ? "rotate-45 bg-[#f4b9d8]" : "bg-white"}`}>
+        <span>{question}</span>
+        <span className={`faq-plus ${open ? "is-open" : ""}`}>
           <PlusIcon />
         </span>
       </button>
       <div className={`grid transition-all duration-300 ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
         <div className="overflow-hidden">
-          <p className="px-6 pb-6 text-[16px] leading-[1.55] text-black/58">{answer}</p>
+          <p className="faq-answer">{answer}</p>
         </div>
       </div>
     </article>
